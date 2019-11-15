@@ -1,4 +1,6 @@
+import 'package:channel_bloc/blocs/counter_view/counter_view_bloc.dart';
 import 'package:channel_bloc/delegate.dart';
+import 'package:channel_bloc/screens/counter_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -49,6 +51,21 @@ class MyApp extends StatelessWidget {
                   chanBloc: chanBloc,
                 ),
                 child: CounterUpdaterScreen(),
+              );
+            });
+          case '/counter_view':
+            return CupertinoPageRoute(builder: (ctx) {
+              // Selected counter is passed via arguments with a signature of <id:value>.
+              final args = settings.arguments as Map<int, int>;
+              final id = args.keys.first;
+              final value = args[id];
+              return BlocProvider(
+                builder: (context) => CounterViewBloc(
+                  id: id,
+                  value: value,
+                  chanBloc: chanBloc,
+                ),
+                child: CounterView(),
               );
             });
           default:

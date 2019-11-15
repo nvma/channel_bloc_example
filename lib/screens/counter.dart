@@ -27,7 +27,7 @@ class CounterScreen extends StatelessWidget {
               return ListTile(
                 onTap: () {
                   Navigator.of(context).pushNamed(
-                    "/counter_updater",
+                    "/counter_view",
                     arguments: {id: value},
                   );
                 },
